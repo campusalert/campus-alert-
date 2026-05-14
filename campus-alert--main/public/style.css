@@ -1,0 +1,266 @@
+body {
+
+background-image: url("https://thumbs.dreamstime.com/b/red-neon-warning-sign-exclamation-mark-inside-triangle-labeled-security-alert-against-high-tech-digital-background-393969815.jpg");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+font-family: Arial;
+color: white;
+margin: 0;
+padding: 0;
+
+}
+
+.container {
+
+width: 85%;
+margin: auto;
+text-align: center;
+padding-top: 40px;
+padding-bottom: 40px;
+
+background: rgba(0,0,0,0.5);
+
+backdrop-filter: blur(8px);
+
+border-radius: 20px;
+
+margin-top: 20px;
+
+}
+
+h1 {
+
+color:#f3b6e4;
+
+text-shadow:
+0 0 12px #FF4D4D,
+0 0 30px rgba(255,77,77,0.8);
+
+}
+
+input, select {
+
+color:black;
+
+width: 320px;
+
+padding: 12px;
+
+font-size: 18px;
+
+border-radius: 10px;
+
+border: none;
+
+}
+
+button {
+
+padding: 12px 20px;
+
+margin: 10px;
+
+background: red;
+
+color: black;
+
+border: none;
+
+cursor: pointer;
+
+border-radius: 10px;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+}
+
+button:hover {
+
+transform: scale(1.05);
+
+box-shadow:
+0 0 10px red,
+0 0 20px red;
+
+}
+
+.reportBox {
+
+background: #222;
+
+padding: 20px;
+
+margin-top: 20px;
+
+border-radius: 10px;
+
+animation: popup 0.4s ease;
+
+}
+
+@keyframes popup {
+
+0% {
+
+transform: scale(0.7);
+opacity: 0;
+
+}
+
+100% {
+
+transform: scale(1);
+opacity: 1;
+
+}
+
+}
+
+.stats {
+
+display: flex;
+
+justify-content: center;
+
+gap: 20px;
+
+flex-wrap: wrap;
+
+margin-top: 20px;
+
+}
+
+.statBox {
+
+background: rgba(255,255,255,0.1);
+
+padding: 20px;
+
+border-radius: 15px;
+
+width: 180px;
+
+box-shadow:
+0 0 10px rgba(255,0,0,0.5);
+
+}
+
+.statBox h2 {
+
+font-size: 40px;
+
+margin: 0;
+
+}
+
+#clock {
+
+margin-top: 20px;
+
+text-shadow:
+0 0 10px red;
+
+}
+
+#statusBox {
+
+margin-top: 20px;
+
+font-size: 20px;
+
+background: rgba(255,255,255,0.1);
+
+padding: 20px;
+
+border-radius: 10px;
+
+}
+
+.note {
+
+padding-top: 80px;
+
+padding-left: 100px;
+
+padding-right: 100px;
+
+color: aliceblue;
+
+text-shadow:
+0 0 15px rgba(175, 27, 27, 0.911);
+
+font-size: 18px;
+
+}
+
+footer {
+
+margin-top:40px;
+
+padding:20px;
+
+background: rgba(0,0,0,0.5);
+
+font-size:14px;
+
+text-align:center;
+
+}
+
+.qr {
+
+border-radius: 10px;
+
+box-shadow:
+0 0 20px red;
+
+}
+
+@media(max-width:768px){
+
+.container {
+
+width:95%;
+
+}
+
+input,
+select {
+
+width:90%;
+
+}
+
+.stats {
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.note {
+
+padding-left:20px;
+padding-right:20px;
+padding-top:50px;
+
+}
+
+}
+
+.broadcastBox{
+
+margin-top:40px;
+padding:25px;
+background:rgba(0,0,0,0.6);
+border-radius:20px;
+backdrop-filter:blur(6px);
+
+}

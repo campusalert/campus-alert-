@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Security Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 style="font-size: 60px;">
+
+🛡 Security Panel
+
+</h1>
+
+<div class="stats">
+
+<div class="statBox">
+
+<h2 id="totalCount">0</h2>
+
+<p>Total Alerts</p>
+
+</div>
+
+<div class="statBox">
+
+<h2 id="approvedCount">0</h2>
+
+<p>Approved</p>
+
+</div>
+
+<div class="statBox">
+
+<h2 id="dismissedCount">0</h2>
+
+<p>Dismissed</p>
+
+</div>
+
+</div>
+
+<h2 id="clock"></h2>
+
+<h2>🚨 Live Reports</h2>
+<div id="reports"></div>
+
+
+<h2>✅ Approved AlertHistory</h2>
+
+<div id="approvedReports"></div>
+
+</div>
+
+<div class="note">
+
+<b>
+
+⚠️ SECURITY PANEL NOTICE<br><br>
+
+• Review every emergency report carefully.<br>
+
+• Approve only genuine emergencies.<br>
+
+• Dismiss false or spam reports.<br>
+
+• Approved alerts instantly notify members.<br><br>
+
+Stay alert. Ensure campus safety.
+
+</b>
+
+</div>
+
+<footer>
+
+🚀 Developed By Team CODEMINDS
+
+<br><br>
+
+Gauri Khandare |
+Atharv Pawtekar |
+Asra Miskin |
+Khushi Rajput
+
+</footer>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+Notification.requestPermission();
+
+const socket = io();
+
+let total = 0;
+let approved = 0;
+let dismissed = 0;
+
+socket.on("newReport", function(msg) {
+
+if(Notification.permission === "granted") {
+
+new Notification("Emergency Alert", {
+
+body: msg
+
+});
+
+}
+
+total++;
+
+document.getElementById("totalCount")
+.innerText = total;
+
+const reportDiv =
+document.createElement("div");
+
+reportDiv.className = "reportBox";
+
+const text =
+document.createElement("p");
+
+text.innerText = msg;
+
+const approveBtn =
+document.createElement("button");
+
+approveBtn.innerText = "Approve";
+
+approveBtn.onclick = function() {
+
+approved++;
+
+document.getElementById("approvedCount")
+.innerText = approved;
+
+socket.emit("approveAlert", msg);
+
+reportDiv.style.border =
+"3px solid lime";
+
+document.getElementById(
+"approvedReports"
+).prepend(reportDiv);
+
+};
+
+const dismissBtn =
+document.createElement("button");
+
+dismissBtn.innerText = "Dismiss";
+
+dismissBtn.onclick = function() {
+
+dismissed++;
+
+document.getElementById("dismissedCount")
+.innerText = dismissed;
+
+socket.emit("dismissAlert", msg);
+
+reportDiv.remove();
+
+};
+
+reportDiv.appendChild(text);
+
+reportDiv.appendChild(approveBtn);
+
+reportDiv.appendChild(dismissBtn);
+
+document.getElementById("reports")
+.prepend(reportDiv);
+
+});
+
+// LIVE CLOCK
+
+setInterval(() => {
+
+const now = new Date();
+
+document.getElementById("clock")
+.innerHTML =
+
+"🕒 " + now.toLocaleString();
+
+}, 1000);
+
+</script>
+
+</body>
+</html>

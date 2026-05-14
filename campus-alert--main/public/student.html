@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Student Emergency Report</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🚨 Send Emergency Report</h1>
+
+<input
+type="text"
+id="studentName"
+placeholder="Enter Your Name"
+>
+
+<br><br>
+
+<select id="priority">
+
+<option>🔴 High</option>
+<option>🟠 Medium</option>
+<option>🟢 Low</option>
+
+</select>
+
+<br><br>
+
+<select id="type">
+
+<option>🔥 Fire</option>
+<option>🚑 Medical</option>
+<option>🚨 Security Threat</option>
+<option>⚠ Accident</option>
+<option>❓ Other</option>
+
+</select>
+
+<br><br>
+
+<input
+type="text"
+id="msg"
+placeholder="Enter Emergency Message"
+>
+
+<br><br>
+
+<button id="sendBtn" onclick="sendReport()">
+
+Send Report
+
+</button>
+
+<div id="statusBox">
+
+No Reports Sent
+
+</div>
+
+</div>
+
+<footer>
+
+🚀 Developed By Team CODEMINDS
+
+<br><br>
+
+Gauri Khandare |
+Atharv Pawtekar |
+Asra Miskin |
+Khushi Rajput
+
+</footer>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+const socket = io();
+
+function sendReport() {
+
+const button =
+document.getElementById("sendBtn");
+
+button.innerHTML = "Sending...";
+
+const studentName =
+document.getElementById("studentName").value;
+
+const priority =
+document.getElementById("priority").value;
+
+const type =
+document.getElementById("type").value;
+
+const msg =
+document.getElementById("msg").value;
+
+const time =
+new Date().toLocaleTimeString();
+
+const fullMessage =
+
+"👤 " + studentName +
+
+"\n" +
+
+priority +
+
+"\n" +
+
+"🕒 " + time +
+
+"\n" +
+
+type + ": " + msg;
+
+socket.emit("studentReport", fullMessage);
+
+document.getElementById("statusBox")
+.innerHTML =
+
+"⏳ Waiting For Security Approval";
+
+document.getElementById("msg").value = "";
+
+setTimeout(() => {
+
+button.innerHTML = "Send Report";
+
+}, 1000);
+
+}
+
+// APPROVED
+
+socket.on("approvedAlert", () => {
+
+document.getElementById("statusBox")
+.innerHTML =
+
+"✅ Approved By Security";
+
+});
+
+// DISMISSED
+
+socket.on("alertDismissed", () => {
+
+document.getElementById("statusBox")
+.innerHTML =
+
+"❌ Report Dismissed";
+
+});
+
+</script>
+
+</body>
+</html>
