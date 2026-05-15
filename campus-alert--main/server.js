@@ -131,8 +131,8 @@ message.sid
 } catch (error) {
 
 console.log(
-"❌ SMS Error:",
-error.message
+"❌ FULL ERROR:",
+error
 );
 
 }
