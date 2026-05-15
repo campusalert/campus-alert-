@@ -89,35 +89,6 @@ console.log("🚨 Emergency Report:", msg);
 
 io.emit("newReport", msg);
 
-socket.on("securityBroadcast", (msg) => {
-
-console.log("Security Broadcast:", msg);
-
-studentNumbers.forEach(number => {
-
-client.messages.create({
-
-body: msg,
-
-from: "+16514002769",
-
-to: number
-
-})
-.then(message => {
-
-console.log("Broadcast SMS Sent:", message.sid);
-
-})
-.catch(error => {
-
-console.log("Broadcast Error:", error);
-
-});
-
-});
-
-});
 });
 
 // ===============================
